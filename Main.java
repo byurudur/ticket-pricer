@@ -1,4 +1,12 @@
+/**
+ * @author Ahmet Batuhan YÜRÜDÜR
+ * 2024
+ */
+
+
+
 import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,27 +22,38 @@ public class Main {
         Scanner input = new Scanner(System.in);
 
         // Determining the variables.
-        int age, roundTrip, discount, distanceKm;
-        double price, newPrice1, newPrice2;
+        int age, roundTrip, discount, distanceKm, temp;
+        double price, price1, newPrice1,newPrice1_1, newPrice2, newPrice2_2, newPrice3, newPrice3_3 ;
         double centsPerKm = 1.1;
+
 
         // Collecting inputs from the user.
         System.out.println("Please enter your age. ");
-        age = input.nextInt();
-        if (age < 12) {
+
+        temp = input.nextInt();
+        age = Math.abs(temp);
+
+
+        if (age > 0 && age < 12) {
             System.out.println("You have 50% discount!");
         } else if (age >= 12 && age < 24) {
             System.out.println("You have 10% discount!");
         } else if (age >= 65) {
             System.out.println("You have 30% discount!");
-        } else {
+        } else if (age < 0){
+            System.out.println("Age can not be negative. ");
+        }else  {
             System.out.println("You have no discount unless it is a round-trip. ");
-        }
+         }
+
+
         System.out.println("Please enter the distance. ");
         distanceKm = input.nextInt();
         System.out.println("Please specify if you want 1 or 2 tickets.");
         System.out.println("Enter 1 or 2");
         roundTrip = input.nextInt();
+
+        // Switch-Case to output the discount.
         switch (roundTrip) {
             case 1:
                 roundTrip = 1;
@@ -50,40 +69,35 @@ public class Main {
                 }
         }
 
+        // Naming variables and mathematical equations to determine discounts.
         price = (distanceKm * centsPerKm);
+        price1 = price - ( price * 20/100);
+        newPrice1 = price - (price * 50/100);
+        newPrice1_1  = price - (price * 70/100);
+        newPrice2 = price - (price * 10/100);
+        newPrice2_2 = price - (price * 30/100);
+        newPrice3 = price - (price * 30/100);
+        newPrice3_3 = price - (price * 50/100);
 
-        if (age < 12) {
-            newPrice1 = (price - (price * (50/100)));
-            if (roundTrip == 2) {
-                newPrice2 = (price - (price * (70/100)));
-                System.out.println("Ticket price: " + newPrice2 + "$");
-            } else {
-                System.out.println("Ticket price: " + newPrice1 + "$");
-            }
-        } else if (age >= 12 && age < 24) {
-            newPrice1 = (price - (price * (10/100)));
-            if (roundTrip == 2) {
-                newPrice2 = (price - (price * (30/100)));
-                System.out.println("Ticket price: " + newPrice2 + "$");
-            } else {
-                System.out.println("Ticket price: " + newPrice1 + "$");
-            }
-        } else if (age >= 65) {
-            newPrice1 = (price - (price * (30/100)));
-            if (roundTrip == 2) {
-                newPrice2 = (price - (price * (50/100)));
-                System.out.println("Ticket price: " + newPrice2 + "$");
-            } else {
-                System.out.println("Ticket price: " + newPrice1 + "$");
-            }
+        // Outputting the discounted ticket price.
+        if (age < 12 && roundTrip == 1){
+            System.out.println("Ticket price: " + newPrice1 + "$");
+        } else if (age < 12 && roundTrip ==2) {
+            System.out.println("Ticket price: " + newPrice1_1 + "$");
+        } else if (age >= 12 && age <24 && roundTrip ==1 ) {
+            System.out.println("Ticket price: " + newPrice2 + "$");
+        } else if (age >= 12 && age <24 && roundTrip ==2) {
+            System.out.println("Ticket price: " + newPrice2_2 + "$");
+        } else if (age >= 24 && age < 65 && roundTrip == 1) {
+            System.out.println("Ticket price: " + price + "$");
+        } else if (age >= 24 && age < 65 && roundTrip == 2) {
+            System.out.println("Ticket price: " + price1 + "$");
+        } else if (age >= 65 && roundTrip ==1) {
+            System.out.println("Ticket price: " + newPrice3 + "$");
+        } else if (age >= 65 && roundTrip ==1) {
+            System.out.println("Ticket price: " + newPrice3_3 + "$");
         }else {
-            if (roundTrip == 1){
-                System.out.println("Ticket price: " + price + "$");
-            }else {
-                newPrice1 = (price - (price * 20/100));
-                System.out.println("Ticket price " + newPrice1 + "$");
-
-            }
+            System.out.println("Bir şeyler ters gitti.");
         }
     }
 }
