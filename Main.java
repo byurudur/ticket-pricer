@@ -82,6 +82,7 @@ public class Main {
             }else {
                 newPrice1 = (price - (price * 20/100));
                 System.out.println("Ticket price " + newPrice1 + "$");
+
             }
         }
     }
