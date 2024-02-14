@@ -2,9 +2,6 @@
  * @author Ahmet Batuhan YÜRÜDÜR
  * 2024
  */
-
-
-
 import java.util.Scanner;
 import java.util.*;
 
@@ -21,41 +18,17 @@ public class Main {
         // Scanner class is imported.
         Scanner input = new Scanner(System.in);
 
+
         // Determining the variables.
         int age, roundTrip, discount, distanceKm, ageGap;
         double price, price1, newPrice1,newPrice1_1, newPrice2, newPrice2_2, newPrice3, newPrice3_3 ;
         double centsPerKm = 1.1;
         ageGap = 0;
 
+
         // Collecting inputs from the user.
         System.out.println("Please enter your age. ");
-
         age = input.nextInt();
-
-        /**
-        switch (age){
-            case 1:
-                if (age <0){
-                    System.out.println("Age can not be negative. ");
-                }
-            case 2:
-                if (age > 0 && age < 12) {
-                    System.out.println("You have 50% discount!");
-                }
-            case 3:
-                if (age >= 12 && age < 24) {
-                    System.out.println("You have 10% discount!");
-                }
-            case 4:
-                if (age >= 65) {
-                    System.out.println("You have 30% discount!");
-                }
-            case 5:
-                if (age >= 24 && age < 65){
-                    System.out.println("You have no discount unless it is a round-trip. ");
-                }
-        } */
-
 
         if (age > 0 && age < 12) {
             System.out.println("You have 50% discount!");
@@ -64,22 +37,34 @@ public class Main {
         } else if (age >= 65) {
             System.out.println("You have 30% discount!");
         } else if (age < ageGap){
-            System.out.println("Age can not be negative. ");
-            return;
+            System.out.println("Age can not be negative! ");
+
+
+            // Fixing the entry.
+            do {
+                System.out.println("Please reenter the age. ");
+                age = input.nextInt();
+            } while (age < ageGap);
         }else  {
             System.out.println("You have no discount unless it is a round-trip. ");
         }
-
-
         System.out.println("Please enter the distance. ");
         distanceKm = input.nextInt();
         if (distanceKm < ageGap){
-            System.out.println("Distance can not be negative ");
-            return;
+            System.out.println("Distance can not be negative! ");
+
+
+            // Fixing the entry.
+            do {
+                System.out.println("Please reenter the distance. ");
+                distanceKm = input.nextInt();
+            }while ( distanceKm < 0);
         }
         System.out.println("Please specify if you want 1 or 2 tickets.");
         System.out.println("Enter 1 or 2");
         roundTrip = input.nextInt();
+
+
 
         // Switch-Case to output the discount.
         switch (roundTrip) {
@@ -106,6 +91,7 @@ public class Main {
         newPrice2_2 = price - (price * 30/100);
         newPrice3 = price - (price * 30/100);
         newPrice3_3 = price - (price * 50/100);
+
 
         // Outputting the discounted ticket price.
         if (age < 12 && roundTrip == 1){
